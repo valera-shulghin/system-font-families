@@ -115,7 +115,7 @@ const extendedReducer = (m, { family, subFamily, file, postscript, systemFont })
     }
 };
 
-const SystemFonts = function(options = {}) {
+const SystemFonts = function (options = {}) {
 
     const { ignoreSystemFonts = false, customDirs = [] } = options;
 
@@ -263,6 +263,17 @@ const SystemFonts = function(options = {}) {
                 return obj;
             }, {});
         return Object.keys(names).sort((a, b) => a.localeCompare(b));
+    };
+
+    this.getFontsSyncWithPaths = () => {
+        const names = this.getFontsExtendedSync();
+        const fonts = names.map((font) => {
+            const { family, files } = font;
+            const filesArray = Object.keys(files).map(key => files[key]);
+
+            return { family, files: filesArray };
+        });
+        return fonts.sort((a, b) => a.family.localeCompare(b.family));
     };
 
 };
