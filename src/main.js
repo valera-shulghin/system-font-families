@@ -270,8 +270,7 @@ const SystemFonts = function (options = {}) {
         const fonts = names.map((font) => {
             const { family, files } = font;
             const filesArray = Object.keys(files).map(key => files[key]);
-
-            return { family, files: filesArray };
+            return { family, files: filesArray, json: font };
         });
         return fonts.sort((a, b) => a.family.localeCompare(b.family));
     };

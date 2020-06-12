@@ -305,8 +305,7 @@ var SystemFonts = function SystemFonts() {
             var filesArray = Object.keys(files).map(function (key) {
                 return files[key];
             });
-
-            return { family: family, files: filesArray };
+            return { family: family, files: filesArray, json: font };
         });
         return fonts.sort(function (a, b) {
             return a.family.localeCompare(b.family);
